@@ -1,6 +1,22 @@
-.container{
-    width: 100%;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
+body{
+    height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: azure;
+}
+
+.container{
+    
+}
+
 .main{
     height: 500px;
     width: 500px;
