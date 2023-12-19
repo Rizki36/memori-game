@@ -25,6 +25,7 @@ let gambar = [
   '<i class="fas fa-angry"></i>',
   '<i class="fas fa-apple-alt"></i>',
 ];
+
 function shuffle(array) {
   let currentIndex = array.length,
     temporaryValue,
@@ -63,6 +64,14 @@ for (let i = 0; i < boxs.length; i++) {
 
   $(".inner", boxs[i]).append(gambar[i]);
   $(boxs[i]).on("click", function () {
+    // jika belum di mulai maka tidak bisa di klik
+    if ($("#btn-start").is(":visible")) return false;
+
+    if ($(".box.tutup").length == 0) {
+      alert("Game Selesai");
+      window.location.reload();
+    }
+
     if ($(this).hasClass("tutup")) {
       countKlik += 1;
       if (countKlik > 2) {
@@ -105,3 +114,22 @@ for (let i = 0; i < boxs.length; i++) {
     }
   });
 }
+
+const countDown = (time) => {
+  let timer = time;
+  $("#timer").text(timer);
+
+  setInterval(() => {
+    timer--;
+    $("#timer").text(timer);
+    if (timer == 0) {
+      alert("Game Over");
+      window.location.reload();
+    }
+  }, 1000);
+};
+
+$("#btn-start").on("click", function () {
+  $("#btn-start").hide();
+  countDown(60);
+});
